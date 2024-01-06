@@ -88,8 +88,8 @@ app.listen(PORT, () => {
 
 app.get('/Notification/:id', async (req:any, res:any) => {
   try {
-    const notification = await Notification.find({ userId: req.params.id });
-    res.json(notification);
+    const notifications = await Notification.find({ userId: req.params.id }).sort({ unread: -1 });
+    res.json(notifications);
 } catch (error) {
     res.status(500).json({ message: 'Error fetching notification' });
 }

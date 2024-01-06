@@ -82,8 +82,8 @@ app.listen(PORT, () => {
 });
 app.get('/Notification/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const notification = yield notification_model_1.default.find({ userId: req.params.id });
-        res.json(notification);
+        const notifications = yield notification_model_1.default.find({ userId: req.params.id }).sort({ unread: -1 });
+        res.json(notifications);
     }
     catch (error) {
         res.status(500).json({ message: 'Error fetching notification' });
